@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Level1.Michelle.firstPractice.Backend;
-using Level1.Michelle.firstPractice.Backend.Products;
+using Level1.Michelle.firstPractice.Backend.ProductsFolder;
 
 namespace Level1.Michelle.firstPractice.Backend
 {
@@ -12,19 +12,21 @@ namespace Level1.Michelle.firstPractice.Backend
     {
         public string ClientName { get; set; }
         public int OrderNumber { get; set; }
-        List<object> OrderList = new();
+        public string PaymentMethod { get; set; }
+        public List<Products> OrderList = new();
+        public List<int> Quantities = new();
         public double total;
 
         public FinalOrder(string cName, int orderNumber ) 
         { 
         this.ClientName = cName;
         this.OrderNumber = orderNumber;
-
+        this.PaymentMethod = "define";
         }
      
         public double CalculateTotal()
         {
-            foreach (Dishes product in OrderList)
+            foreach (Products product in OrderList)
             {
                 var price = product.Price;
                 var quantity = product.quantity;
@@ -33,14 +35,18 @@ namespace Level1.Michelle.firstPractice.Backend
             return total;
         }
 
-        public void AddObject(Dishes dish)
+        public void AddObject(Products product)
         {
-            OrderList.Add(dish);
+            OrderList.Add(product);
         }
-
-        public void AddObject(Beverages beve)
+        public void AddQuantity(int quant)
         {
-            OrderList.Add(beve);
+            Quantities.Add(quant);
+        }
+        public string DefinePM(string paymentMethodR)
+        {
+            this.PaymentMethod = paymentMethodR;
+            return PaymentMethod;
         }
 
     }

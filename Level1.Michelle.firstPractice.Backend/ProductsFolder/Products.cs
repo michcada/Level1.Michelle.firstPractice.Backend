@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Level1.Michelle.firstPractice.Backend.Products
+namespace Level1.Michelle.firstPractice.Backend.ProductsFolder
 {
-    internal class Products
+    public class Products
     {
         public string Name { get; set; }
         public double Price { get; set; }
-
-        public int quantity;
 
         public Products(string name, double price)
         {
