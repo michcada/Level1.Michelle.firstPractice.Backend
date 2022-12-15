@@ -29,7 +29,7 @@ Beverages beer = new("Beer", 7.5);
 OrdersList myOrderList = new OrdersList();
 
 
-while (orderNum < 2)
+while (orderNum < 5)
 {
     {
         Console.WriteLine("*--------------------- CREATING NEW ORDER ---------------------*\n");
