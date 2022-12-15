@@ -212,8 +212,6 @@ while (orderNum < 5)
                     Console.WriteLine("You selected " + newOrder.PaymentMethod + "\n");
                 }
 
-                // Reset dishes quantity
-
             }
         }
         orderNum++;
