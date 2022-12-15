@@ -1,5 +1,6 @@
 ﻿using Level1.Michelle.firstPractice.Backend;
 using Level1.Michelle.firstPractice.Backend.ProductsFolder;
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
@@ -186,7 +187,7 @@ while (orderNum < 2)
 
                 foreach (var product in myOrderList.Orders[i].OrderList)
                 {
-                    Console.WriteLine(myOrderList.Orders[i].OrderList[b].quantity + " " + myOrderList.Orders[i].OrderList[b].Name + "(s)");
+                    Console.WriteLine(myOrderList.Orders[i].Quantities[b] + " " + myOrderList.Orders[i].OrderList[b].Name + "(s)");
                     b++;
                 }
                 b = 0;
@@ -201,26 +202,18 @@ while (orderNum < 2)
                 if (paySel == 1)
                 {
                     paymentM = "Cash";
-                    Console.WriteLine("You selected " + paymentM + "\n");
+                    newOrder.DefinePM(paymentM);
+                    Console.WriteLine("You selected " + newOrder.PaymentMethod + "\n");
                 }
                 else
                 {
                     paymentM = "Card";
-                    Console.WriteLine("You selected " + paymentM + "\n");
+                    newOrder.DefinePM(paymentM);
+                    Console.WriteLine("You selected " + newOrder.PaymentMethod + "\n");
                 }
 
                 // Reset dishes quantity
 
-                spaghetti.quantity = 0;
-                lasagna.quantity = 0;
-                pizza.quantity = 0;
-                calzone.quantity = 0;
-
-                // Reset beverages quantity
-
-                soda.quantity= 0;
-                wine.quantity = 0;
-                beer.quantity = 0;
             }
         }
         orderNum++;
@@ -230,17 +223,20 @@ while (orderNum < 2)
 Console.WriteLine("********************** PREPARING ORDERS *********************");
 i = 0;
 b = 0;
+Console.WriteLine(".\n.\n.");
+Console.WriteLine("+++++++++++++++++++++++++ DELIVERING +++++++++++++++++++++++++");
 
 foreach (var order in myOrderList.Orders)
 {
-    Console.WriteLine("Delivering Order {0}, Customer: {1}", myOrderList.Orders[i].OrderNumber, myOrderList.Orders[i].ClientName);
+    if (i > 0) {Console.WriteLine("_______________________________________________________________"); }
+    Console.WriteLine("\nDelivering Order {0}, Customer: {1}\n", myOrderList.Orders[i].OrderNumber, myOrderList.Orders[i].ClientName);
     foreach (var product in myOrderList.Orders[i].OrderList)
     {
-        Console.WriteLine(myOrderList.Orders[i].OrderList[b].quantity +" "+ myOrderList.Orders[i].OrderList[b].Name + "(s)");
-        Console.WriteLine("cost: $" + Math.Round(myOrderList.Orders[i].total, 2));
-        Console.Write("Payment method: " + myOrderList.Orders[i].PaymentMethod + "\n");
+        Console.WriteLine(myOrderList.Orders[i].Quantities[b] +" "+ myOrderList.Orders[i].OrderList[b].Name + "(s)");
         b++;
     }
+    Console.WriteLine("cost: $" + Math.Round(myOrderList.Orders[i].total, 2));
+    Console.Write("Payment method: " + myOrderList.Orders[i].PaymentMethod + "\n");
     i++;
     b = 0;
 }

@@ -12,7 +12,7 @@ namespace Level1.Michelle.firstPractice.Backend
     {
         public string ClientName { get; set; }
         public int OrderNumber { get; set; }
-        public string PaymentMethod { get; set; }
+        public string PaymentMethod;
         public List<Products> OrderList = new();
         public List<int> Quantities = new();
         public double total;
@@ -21,18 +21,20 @@ namespace Level1.Michelle.firstPractice.Backend
         { 
         this.ClientName = cName;
         this.OrderNumber = orderNumber;
-        this.PaymentMethod = "define";
+        PaymentMethod = "define";
         }
      
         public double CalculateTotal()
         {
+            int i = 0;
             foreach (Products product in OrderList)
             {
                 var price = product.Price;
-                var quantity = product.quantity;
-                total += price * quantity;
+                total += price * Quantities[i];
+                i++;
             }
             return total;
+            i = 0;
         }
 
         public void AddObject(Products product)
